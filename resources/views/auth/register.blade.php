@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app1')
 
 @section('content')
 <div class="container">
@@ -15,7 +15,9 @@
                             <label for="name" class="col-md-4 control-label">Nombre completo</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+                                <input id="name" type="text" class="form-control"
+                                name="name" value="{{ old('name') }}"
+                                pattern="[A-Za-z]" maxlength="35" required autofocus>
 
                                 @if ($errors->has('name'))
                                     <span class="help-block">
@@ -57,7 +59,7 @@
                             <label for="phone" class="col-md-4 control-label">Teléfono</label>
 
                             <div class="col-md-6">
-                                <input id="phone" type="number" pattern="{8}" class="form-control" name="phone" value="{{ old('phone') }}" required>
+                                <input id="phone" type="string" pattern="{8}" class="form-control" name="phone" value="{{ old('phone') }}" required>
 
                                 @if ($errors->has('phone'))
                                     <span class="help-block">
