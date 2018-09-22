@@ -17,7 +17,7 @@
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control"
                                 name="name" value="{{ old('name') }}"
-                                pattern="[a-zA-Z]" maxlength="35" minlength="2"
+                                pattern="^[a-zA-Z]{4,}(?: [a-zA-Z]+){0,3}$" maxlength="35" minlength="2"
                                 required autofocus>
 
                                 @if ($errors->has('name'))
@@ -35,6 +35,7 @@
                                 <input id="email" type="email" class="form-control"
                                  name="email" value="{{ old('email') }}"
                                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                                  minlength="7"
                                  required>
 
                                 @if ($errors->has('email'))
@@ -49,7 +50,7 @@
                             <label for="identification" class="col-md-4 control-label">Identificación</label>
 
                             <div class="col-md-6">
-                                <input id="identification" pattern="^[0-9]"
+                                <input id="identification" pattern="\d{10}"
                                 class="form-control" name="identification"
                                 value="{{ old('identification') }}"
                                 type="number" required>
@@ -66,7 +67,7 @@
                             <label for="phone" class="col-md-4 control-label">Teléfono</label>
 
                             <div class="col-md-6">
-                                <input id="phone" type="phone" pattern="\d{1,15}" class="form-control" name="phone" value="{{ old('phone') }}" required>
+                                <input id="phone" type="phone" pattern="\d{8}" class="form-control" name="phone" value="{{ old('phone') }}" required>
 
                                 @if ($errors->has('phone'))
                                     <span class="help-block">
@@ -82,7 +83,9 @@
                             <label for="password" class="col-md-4 control-label">Clave de acceso</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
+                                <input id="password" type="password"
+                                class="form-control" name="password"
+                                pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$" required>
 
                                 @if ($errors->has('password'))
                                     <span class="help-block">
