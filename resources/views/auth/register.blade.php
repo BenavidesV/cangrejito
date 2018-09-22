@@ -17,7 +17,8 @@
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control"
                                 name="name" value="{{ old('name') }}"
-                                pattern="[A-Za-z]" maxlength="35" required autofocus>
+                                pattern="[a-zA-Z]" maxlength="35" minlength="2"
+                                required autofocus>
 
                                 @if ($errors->has('name'))
                                     <span class="help-block">
@@ -31,7 +32,10 @@
                             <label for="email" class="col-md-4 control-label">E-Mail</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+                                <input id="email" type="email" class="form-control"
+                                 name="email" value="{{ old('email') }}"
+                                 pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                                 required>
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">
@@ -45,7 +49,10 @@
                             <label for="identification" class="col-md-4 control-label">Identificación</label>
 
                             <div class="col-md-6">
-                                <input id="identification" pattern="{3}" class="form-control" name="identification" value="{{ old('identification') }}" required>
+                                <input id="identification" pattern="^[0-9]"
+                                class="form-control" name="identification"
+                                value="{{ old('identification') }}"
+                                type="number" required>
 
                                 @if ($errors->has('identification'))
                                     <span class="help-block">
@@ -59,7 +66,7 @@
                             <label for="phone" class="col-md-4 control-label">Teléfono</label>
 
                             <div class="col-md-6">
-                                <input id="phone" type="string" pattern="{8}" class="form-control" name="phone" value="{{ old('phone') }}" required>
+                                <input id="phone" type="phone" pattern="\d{1,15}" class="form-control" name="phone" value="{{ old('phone') }}" required>
 
                                 @if ($errors->has('phone'))
                                     <span class="help-block">
