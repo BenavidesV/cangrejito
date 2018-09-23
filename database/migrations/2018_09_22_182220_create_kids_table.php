@@ -21,7 +21,7 @@ class CreateKidsTable extends Migration
           $table->string('relationship');
           $table->string('ethnicity');
           $table->enum('gender', ['Female', 'Male']);
-          $table->enum('risk', ['Green', 'Red','Yelow']);
+          $table->enum('risk', ['Green', 'Red','Yelow'])->nullable(true);
           $table->unsignedInteger('user_id');
           $table->foreign('user_id')->references('id')->on('users')
           ->onDelete('cascade');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Kid;
+use App\Treatment;
 use Auth;
 use Validator;
 
@@ -24,9 +25,9 @@ class KidController extends Controller
      */
     public function index()
     {
-    //  $kids = Kid::where('user_id','=',Auth::user()->id)->get();
-    //  return view('kids.index',compact('tasks',$kids));
-    return view('kids.index');
+     $kids = Kid::where('user_id','=',Auth::user()->id)->get();
+      return view('kids.index',compact('kids'));
+
     }
 
     /**
@@ -49,20 +50,22 @@ class KidController extends Controller
     {
       $validator = Validator::make($request->all(), [
       'name'=>'required|string|min:2|max:35',
-      'identification'=>'required|number|max:10',
-      'age'=>'required|number',
+      'identification'=>'required|numeric|digits_between:1,10',
+      'age'=>'required|numeric',
       'gender'=>'required',
+      'ethnicity'=>'required',
+      'relationship'=>'required',
+      'illness'=>'required'
   ]);
 
   $kid = new Kid;
-
+  $treatment = new Treatment;
   if ($validator->fails()) {
     return redirect('kids/create')
                 ->withErrors($validator)
                 ->withInput();
     }
 
-    $kid->name = $request->name;
     $kid->name = $request->name;
     $kid->identification = $request->identification;
     $kid->age = $request->age;
@@ -71,6 +74,13 @@ class KidController extends Controller
     $kid->gender = $request->gender;
     $kid->user_id = Auth::user()->id;
     $kid->save();
+
+    $treatment->treatments_physical =$request->treatments_physical;
+    $treatment->medicines =$request->medicines;
+    $treatment->illness =$request->illness;
+    $treatment->kid_id = Auth::user()->id;
+    $treatment->save();
+
     return redirect('kids');
 
     }
@@ -84,7 +94,7 @@ class KidController extends Controller
     public function show($id)
     {
       $kid = Kid::find($id);
-     return View('kids.show',compact('kid',$kid));
+     return View('kids.show',compact('kid'));
     }
 
     /**
@@ -96,7 +106,7 @@ class KidController extends Controller
     public function edit($id)
     {
         $kid = Kid::find($id);
-        return view('kids.edit',compact('kid',$kid));
+        return view('kids.edit',compact('kid'));
     }
 
     /**
@@ -143,5 +153,16 @@ class KidController extends Controller
     {
       Kid::find($id)->delete();
       return redirect()->route('kids.index')->with('success','Kid deleted successfully');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function history($id)
+    {
+      return View('kids.history');
     }
 }

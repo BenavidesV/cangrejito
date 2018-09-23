@@ -17,7 +17,7 @@
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control"
                                 name="name" value="{{ old('name') }}"
-                                pattern="[a-zA-Z]" maxlength="35" minlength="2"
+                                 maxlength="35" minlength="2"
                                 required autofocus>
 
                                 @if ($errors->has('name'))

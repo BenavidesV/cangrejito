@@ -20,3 +20,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('kids','KidController');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
+Route::get('kids/{id}/history', 'KidController@history');
