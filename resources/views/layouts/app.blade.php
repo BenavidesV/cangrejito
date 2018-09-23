@@ -277,5 +277,8 @@
   <script src="/build/js/custom.min.js"></script>
   <script src="/build/js/cust.js"></script>
 
+  <!-- Dropzone.js -->
+  <script src="/vendors/dropzone/dist/min/dropzone.min.js"></script>
+
 </body>
 </html>

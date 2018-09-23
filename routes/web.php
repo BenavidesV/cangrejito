@@ -21,3 +21,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('kids','KidController');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::get('kids/{id}/history', 'KidController@history');
+Route::post('ibm/personality-traits', 'IbmWatsonController@getPersonalityTraits')->name('personality.post');
+Route::post('ibm/speech-to-text', 'IbmWatsonController@getSpeechToText')->name('speech.post');
+Route::get('getDaily', 'IbmWatsonController@getNote');
+#Route::post('getText','IbmWatsonController@getText');
+Route::post('getText', ['as' => 'getText', 'uses' => 'IbmWatsonController@getText']);
