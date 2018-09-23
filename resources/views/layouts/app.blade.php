@@ -233,6 +233,8 @@
     </div>
   </div>
 
+
+
   <!-- jQuery -->
   <script src="../vendors/jquery/dist/jquery.min.js"></script>
   <!-- Bootstrap -->
@@ -273,6 +275,7 @@
 
   <!-- Custom Theme Scripts -->
   <script src="../build/js/custom.min.js"></script>
+  <script src="../build/js/cust.js"></script>
 
 </body>
 </html>
